@@ -3,16 +3,15 @@ import {
   Form,
   FormError,
   Label,
-  TextField,
-  TextAreaField,
   Submit,
+  TextAreaField,
+  TextField,
   useForm,
 } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const CREATE_CONTACT = gql`
-  # something is broken below - prisma studio not showing saved contacts
   mutation CreateContactMutation($input: CreateContactInput!) {
     createContact(input: $input) {
       id
@@ -22,6 +21,7 @@ const CREATE_CONTACT = gql`
 
 const ContactPage = () => {
   const formMethods = useForm()
+
   const [create, { loading, error }] = useMutation(CREATE_CONTACT, {
     onCompleted: () => {
       toast.success('Thank you for your submission!')
@@ -46,6 +46,7 @@ const ContactPage = () => {
         formMethods={formMethods}
       >
         <FormError error={error} wrapperClassName="form-error" />
+
         <Label name="name" errorClassName="error">
           Name
         </Label>
