@@ -30,7 +30,6 @@ const ContactPage = () => {
   })
 
   const onSubmit = (data) => {
-    console.log(data)
     create({ variables: { input: data } })
   }
 
@@ -64,10 +63,10 @@ const ContactPage = () => {
           name="email"
           validation={{
             required: true,
-            // pattern: { // we're validating in the backend at the model level — no need ot do it here
-            //   value: /^[^@]+@[^.]+\..+$/,
-            //   message: 'Please enter a valid email address',
-            // },
+            pattern: {
+              value: /^[^@]+@[^.]+\..+$/,
+              message: 'Please enter a valid email address',
+            },
           }}
           errorClassName="error"
         />
